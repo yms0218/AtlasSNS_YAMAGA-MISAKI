@@ -42,6 +42,24 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
 
+            //追加記述↓
+            $data = $request->all();
+            $validator=$request->validate([
+            'username' => 'required|min:2|max:40',
+            'mail' => 'required|string|email|min:5|max:40',
+            'password' => 'required|alpha_num|min:8|max:20|confirmed',
+            'password_confirmation' => 'required|alpha_num|min:8|max:20',
+        ]);
+
+            //$validator = Validator::make($data, $rules);
+            //if($validator->fails()){
+            //return redirect('/register')
+            //->withErrors($validator)
+            //->withInput();
+            //}
+
+            $this->create($data);
+            $user = $request ->session() -> get('username');
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
@@ -52,7 +70,10 @@ class RegisterController extends Controller
                 'password' => bcrypt($password),
             ]);
 
-            return redirect('added');
+            //$this->create($data);
+            //$user = $request ->session() -> get('username');
+
+            return redirect('added');//->with('username',$user);
         }
         return view('auth.register');
     }

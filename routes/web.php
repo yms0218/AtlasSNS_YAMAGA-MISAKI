@@ -18,7 +18,6 @@
 
 //Auth::routes();
 
-
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login');
 Route::post('/login', 'Auth\LoginController@login');
@@ -29,6 +28,9 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
+//ログイン中からログアウト
+Route::post('/top', 'Auth\LoginController@logout');
+
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 
@@ -36,5 +38,10 @@ Route::get('/profile','UsersController@profile');
 
 Route::get('/search','UsersController@index');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/followList','FollowsController@followList');
+Route::get('/followerList','FollowsController@followerList');
+
+//新規登録
+ //Route::get('/top','UsersController@users');
+
+ //Route::get('/login','Auth\loginController@login')-> name('login');

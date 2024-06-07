@@ -21,20 +21,33 @@
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
+        <h1><a href="/top">
+            <figure class="atlas">
+            <img src="images/atlas.png" alt="Atlas">
+            </figure>
+        </a></h1>
+
+        <div class="side_user">
+        <!-- アコーディオンメニュー -->
+        <div id="accordion" class="accordion-container">
+        <p>◯◯さん<img src="images/icon1.png"></p>
+
+        <div class="accordion-title js-accordion-title">
+
+                <p class="menu-btn"></p>
+                <ul class="menu">
+                    <li><a href="/top">HOME</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-            </div>
+        </div>
+        <figure class="icon">
+        <img src="">
+        </figure>
+        </div>
         </div>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
@@ -58,7 +71,7 @@
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
