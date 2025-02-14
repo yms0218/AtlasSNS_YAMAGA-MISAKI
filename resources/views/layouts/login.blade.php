@@ -18,6 +18,7 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+    
 </head>
 <body>
     <header>
@@ -30,14 +31,14 @@
         <div class="side_user">
         <!-- アコーディオンメニュー -->
         <div id="accordion" class="accordion-container">
-        <p>◯◯さん<img src="images/icon1.png"></p>
+        <p>{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
 
         <div class="accordion-title js-accordion-title">
 
                 <p class="menu-btn"></p>
                 <ul class="menu">
                     <li><a href="/top">HOME</a></li>
-                    <li><a href="/profile">プロフィール編集</a></li>
+                    <li><a href="/users.profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
         </div>
@@ -54,24 +55,25 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->follow->count() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/followList">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->follower->count() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </body>
 </html>

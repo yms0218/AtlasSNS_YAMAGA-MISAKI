@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -39,46 +40,43 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    /*
+    * @param  array
+    * @return Illuminate\Contracts\Validation\Validator
+    */
+
     public function register(Request $request){
         if($request->isMethod('post')){
 
             //追加記述↓
-            $data = $request->all();
-            $validator=$request->validate([
-            'username' => 'required|min:2|max:40',
-            'mail' => 'required|string|email|min:5|max:40',
-            'password' => 'required|alpha_num|min:8|max:20|confirmed',
-            'password_confirmation' => 'required|alpha_num|min:8|max:20',
+            $request->validate([
+            'username' => 'required|string|min:2|max:12',
+            'mail' => 'required|string|email|min:5|max:40|unique:users,mail',
+            'password' => 'required|string|min:8|max:20|confirmed',
         ]);
 
-            //$validator = Validator::make($data, $rules);
-            //if($validator->fails()){
-            //return redirect('/register')
-            //->withErrors($validator)
-            //->withInput();
-            //}
-
-            $this->create($data);
-            $user = $request ->session() -> get('username');
+            //判定
             $username = $request->input('username');
             $mail = $request->input('mail');
-            $password = $request->input('password');
-
+            $password = bcrypt($request->input('password'));
+            //格納
             User::create([
                 'username' => $username,
                 'mail' => $mail,
-                'password' => bcrypt($password),
+                'password' => $password,
             ]);
 
-            //$this->create($data);
-            //$user = $request ->session() -> get('username');
+            //登録完了ページへ（ユーザーネームを表示させるために「$username」を添えて）
 
-            return redirect('added');//->with('username',$user);
+
+            return redirect('added')->with('username',$username);
         }
         return view('auth.register');
     }
 
     public function added(){
-        return view('auth.added');
+        $value = session('username'); //sessionデータから$usernameを取得
+        //dd($value);//ユーザー名受け渡しでバック用
+        return view('auth.added',compact('value'));
     }
 }

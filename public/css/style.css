@@ -10,41 +10,32 @@ header{
     background:#186AC9;
 }
 
+
+
 p {
     color: #f7ecf1;
 }
 
 /* main content */
-#head {
-    display: flex;
-}
-
-#head {
-    align-items: center;
-    position: relative;
-}
-
 #row{
-    display: flex;
-    flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 #container{
-    height: 100%;
-    flex: 0 0 80%;
-    border-right: 1px solid #727272;
-    z-index: 2;
+  flex: 0 0 80%;
 }
 
 #side-bar{
-    z-index: 1;
-    flex: 0 0 19%;
-    border-left: 1px solid #727272;
+  flex: 0 0 19%;
+  border-left: 1px solid #727272;
 }
+
 
 /* アコーディオンメニュー */
 .menu-btn .menu{
-  text-decoration: none;
+  list-style: none;
+  text-align: center;
 }
 
 .accordion-title{
@@ -52,9 +43,8 @@ p {
   position: relative;
   margin-left: 700px;
   float: right;
-  outline: 0;
   border-top: none;
-  outline: 0;
+
 }
 
 .accordion-title p{
@@ -81,7 +71,7 @@ p {
   right: 40px;
   top: 3%;
   transform: rotate(-90deg);
-  transform: translateY();
+  left: 20px
 }
 
 .accordion-title ul a:hover{
@@ -93,20 +83,16 @@ p {
   display: flex;
   transform: rotate(90deg);
 }
-/*
+
 .menu{
   position: absolute;
   top: 75px;
-  width: 100%;
+  width: 20vw;
   height: 50px;
-  left: 70px;
-  border-color: darkblue;
-  display: flex;
+  right: 0;
   background-color: #fff;
-  text-align: center;
-  flex-flow: column;
 }
-*/
+
 
 .accordion-title ul li{
   padding: 20px;
@@ -118,8 +104,8 @@ p {
 
 
 /* 追加記述 */
+#index.blade.php
 
-/*
 section{
     background-color:#ccd8ff;
     padding:50px 0;
@@ -130,18 +116,67 @@ section{
     border-bottom:1px solid #000;
     display:flex;
   }
-
+  
   .post-content{
     width:100%;
     padding:15px;
   }
-
+  
   .post-content > div{
     display:flex;
     justify-content:space-between;
   }
-
+  
   .post-name{
     margin-bottom:10px;
   }
-*/
+  /*---投稿画面---*/
+.send {
+  border-radius: 5px;
+}
+
+.delete {
+  background: #ca353b;
+  color: #fff;
+}
+
+.delete:hover {
+	background: #fff;
+  border: 1px solid #ca353b;
+  cursor: pointer;
+}
+
+.delete:active {
+  
+  border-bottom: none;
+  border-bottom: 2px solid #000000;
+  cursor: pointer;
+}
+
+/* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
+.content{
+  margin: 0 auto;
+  padding: 40px;
+}
+.modal{
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.modal__bg{
+  background: rgba(0,0,0,0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+.modal__content{
+  background: #fff;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+}

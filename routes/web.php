@@ -18,8 +18,42 @@
 
 //Auth::routes();
 
+Route::get('/', function () {
+    return view('index');
+})->name('login');
+
+Route::middleware(['auth'])->group(function(){
+
+    //ログイン中からログアウト
+Route::get('/logout', 'Auth\LoginController@logout');
+
+//ログイン中のページ
+Route::get('/top','PostsController@index');
+Route::post('/top','PostsController@create');
+Route::post('/post/update','PostsController@postUpdate');
+
+Route::post('/post/delete','PostsController@delete');
+
+Route::get('/users.profile','UsersController@profile');
+
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
+
+Route::get('/followList','FollowsController@followList');
+Route::get('/followerList','FollowsController@followerList');
+
+// プロフィールを更新させる
+Route::post('/profile','UsersController@profile')->name('profile.updated');
+
+Route::get('/username','UsersController@username');
+Route::post('/username','UsersController@username');
+//検索フォーム用
+
+});
+
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+//Route::get('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -28,18 +62,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
-//ログイン中からログアウト
-Route::post('/top', 'Auth\LoginController@logout');
 
-//ログイン中のページ
-Route::get('/top','PostsController@index');
-
-Route::get('/profile','UsersController@profile');
-
-Route::get('/search','UsersController@index');
-
-Route::get('/followList','FollowsController@followList');
-Route::get('/followerList','FollowsController@followerList');
 
 //新規登録
  //Route::get('/top','UsersController@users');
