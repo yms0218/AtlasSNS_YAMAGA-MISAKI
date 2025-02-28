@@ -13,13 +13,11 @@ class PostsController extends Controller
     public function index(){
 
         //投稿の一覧表示
-        $list = Post::get(); //投稿データを取得
+        $list = Post::get(); //投稿データを取得して変数＄listに格納
         //dd($list);
-        return view('posts.index', ['list'=>$list]);//投稿データをビューに渡す
+        return view('posts.index', ['list'=>$list]);//投稿データをビューに渡す　　//オレンジ色：bladeの渡した先の変数、水色：何を入れたいか、渡したいか
 
-        $list = Auth::user();
     }
-
     //投稿機能
     public function create(Request $request)
        {
@@ -73,7 +71,7 @@ class PostsController extends Controller
         $list = Auth::all();
       }
 
-      return view('posts.index', ['list'=>$list]);
+      return view('users.search', ['users'=>$users]);
     }
 
 }

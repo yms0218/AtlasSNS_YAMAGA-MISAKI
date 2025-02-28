@@ -31,7 +31,6 @@ p {
   border-left: 1px solid #727272;
 }
 
-
 /* アコーディオンメニュー */
 .menu-btn .menu{
   list-style: none;
@@ -179,4 +178,9 @@ section{
   top: 50%;
   transform: translate(-50%,-50%);
   width: 60%;
+}
+
+/*-- 検索画面 --*/
+.word {
+  color: black;
 }

@@ -36,14 +36,18 @@ Route::post('/post/delete','PostsController@delete');
 
 Route::get('/users.profile','UsersController@profile');
 
-Route::get('/search','UsersController@search');
+Route::get('/search', 'UsersController@search')->name('users.search');
 Route::post('/search','UsersController@search');
+Route::get('/users.search', 'UsersController@create' );
+Route::post('/users.search','UsersController@create');
+
+Route::post('/users.','UsersController@create');
 
 Route::get('/followList','FollowsController@followList');
 Route::get('/followerList','FollowsController@followerList');
 
 // プロフィールを更新させる
-Route::post('/profile','UsersController@profile')->name('profile.updated');
+Route::post('/users.profile','UsersController@updateProfile');
 
 Route::get('/username','UsersController@username');
 Route::post('/username','UsersController@username');

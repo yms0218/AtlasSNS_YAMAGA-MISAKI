@@ -43,26 +43,6 @@
       </div>
     </li>
     @endforeach
-    <li class="post-block">
-      <figure><img src="https://placehold.jp/50x50.png" alt="Bさん"></figure>
-      <div class="post-content">
-        <div>
-          <div class="post-name">Bさん</div>
-          <div>2022-12-22</div>
-        </div>
-        <div>投稿内容<br>フォローしている人が投稿した内容を表示します。</div>
-      </div>
-    </li>
-    <li class="post-block">
-      <figure><img src="https://placehold.jp/50x50.png" alt="Cさん"></figure>
-      <div class="post-content">
-        <div>
-          <div class="post-name">Cさん</div>
-          <div>2022-12-22</div>
-        </div>
-        <div>投稿内容<br>お疲れ様です。課題頑張りましょう！</div>
-      </div>
-    </li>
   </ul>
 </div>
 

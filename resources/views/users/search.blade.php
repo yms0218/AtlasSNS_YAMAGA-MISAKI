@@ -5,47 +5,26 @@
 
 
 <div class="container">
-<form action="/search" method="post">
+  {!! Form::open(['url' => 'users.search']) !!}
     @csrf
-
     <h2 class="page-header"></h2>
-    {!! Form::open(['url' => 'users.search']) !!}
-
     <div class="form-group">
-        {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => 'ユーザー名']) !!}
+     {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => 'ユーザー名']) !!}
     </div>
-
-    <button type="submit"><img class="send" src="images/search.png" width="55" height="55"></button>
- {!! Form::close() !!}
- <li class="post-block">
+    <button type="submit"><img class="send" src="images/search.png" width="55" height="55"></button> <!-- input submit -->
+  {!! Form::close() !!}
+  <p class="word">検索ワード：{{ $search }}</p>
+  <ul>
+    @foreach($users as $user) <!-- //['$複数形'as $単数] -->
+    <li class="post-block">
       <figure><img src="images/icon2.png" alt="Bさん"></figure>
       <div class="post-content">
         <div>
-          <div class="post-name">Bさん</div>
+          <div class="post-name">{{ $user->username }}</div> <!-- $単数->カラム名 -->
         </div>
       </div>
     </li>
-
-    <li class="post-block">
-      <figure><img src="images/icon3.png" alt="Cさん"></figure>
-      <div class="post-content">
-        <div>
-          <div class="post-name">Cさん</div>
-        </div>
-      </div>
-    </li>
-
-    <li class="post-block">
-      <figure><img src="images/icon4.png" alt="Dさん"></figure>
-      <div class="post-content">
-        <div>
-          <div class="post-name">Dさん</div>
-        </div>
-      </div>
-    </li>
-</form>
+    @endforeach
+  </ul>
 </div>
-
-
-
 @endsection
