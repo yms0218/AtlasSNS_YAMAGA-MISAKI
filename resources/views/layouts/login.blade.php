@@ -31,7 +31,7 @@
         <div class="side_user">
         <!-- アコーディオンメニュー -->
         <div id="accordion" class="accordion-container">
-        <p>{{ Auth::user()->username }}さん<img src="images/icon1.png"></p>
+        <p>{{ Auth::user()->username }}さん<img src="{{ asset('public/storage/' .Auth::user()->images) }}"></p>
 
         <div class="accordion-title js-accordion-title">
 

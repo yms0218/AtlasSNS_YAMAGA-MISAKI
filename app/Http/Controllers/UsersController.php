@@ -49,24 +49,53 @@ class UsersController extends Controller
                 //追加記述↓
                 $request->validate([
                     'username' => 'required|string|min:2|max:12',
-                    'mail' => 'required|string|email|min:5|max:40|unique:users,mail',
-                    'newPassword' => 'required|string|min:8|max:20|confirmed',
+                    'mail' => 'required|string|email|min:5|max:40',
+                    'password' => 'required|string|min:8|max:20|confirmed',
+                    'password_confirmation' => 'required|string|min:8|max:20',
                     'bio' => 'required|max:150'
                 ]);
+                $this->validate($request, [
+                    'file' => [
+                        // 必須
+                        //'required',
+                        // アップロードされたファイルであること
+                        'file',
+                        // 画像ファイルであること
+                        'images',
+                        // MIMEタイプを指定
+                        'mimes:jpeg,png',
+                        // 最小縦横120px 最大縦横400px
+                        //'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+                    ]]);
             }
         $user = Auth::user();
         $username = $request->input('username');
         $mail = $request->input('mail');
         $password = bcrypt($request->input('password'));
         $bio = $request->input('bio');
-        $images = $request->file('images')->store('images');// 画像をstorage/app/public/image配下に保存
-        //dd($bio);
+        // dd($request,$images, $imageName);
+        //dump($images);
+        //$images = Auth::get();
+        //return view('users.profile',['images'=>$images]);
+        //ddd($);
         $user->update([
             'username' => $username,
             'mail' => $mail,
             'password' => $password,
             'bio' => $bio,
+            // 'images' => $imageName,
         ]);
+        // if文で「画像ファイルがあるとき」
+        if($request->hasFile('images')) {
+        ($images = $request->images->store('public'));// 画像をstorage/app/public/image配下に保存
+        $user->images = $images;
+        $user->save();
+        }
+        else{
+            $images = null;
+        }
+        // if文おわり
+
         return redirect('/top');
 }
 }

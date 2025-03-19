@@ -8,7 +8,17 @@
     </figure>
 </div>
 
-{!! Form::open(['url' => '/users.profile' 'enctype' => 'multiport/form-data']) !!}
+@if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif
+
+{!! Form::open(['url' => '/users.profile' ,'files' => true]) !!}
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username', (Auth::user()->username), ['class' => 'input']) }}
 {{ Form::label('メールアドレス') }}
@@ -22,4 +32,5 @@
 {{ Form::label('アイコン画像' )}}
 {{ Form::file('images',null,['class' => 'input']) }}
 <button class="btn btn-danger">更新</button>
+{!! Form::close() !!}
 @endsection

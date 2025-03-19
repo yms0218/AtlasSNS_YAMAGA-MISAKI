@@ -49,9 +49,10 @@ Route::get('/followerList','FollowsController@followerList');
 // プロフィールを更新させる
 Route::post('/users.profile','UsersController@updateProfile');
 
+//検索フォーム用
 Route::get('/username','UsersController@username');
 Route::post('/username','UsersController@username');
-//検索フォーム用
+
 
 });
 
