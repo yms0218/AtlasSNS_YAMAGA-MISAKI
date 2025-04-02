@@ -73,7 +73,15 @@ class PostsController extends Controller
 
       return view('users.search', ['users'=>$users]);
     }
-
+    //フォローしているユーザーのみの情報を取得する
+    public function show(){
+      //フォローしているユーザーのidを取得
+      $following_id = Auth::user()->follow()->pluck('followed_id');
+      //フォローしているユーザーのidを元に投稿機能を取得
+      $posts = Post::with('user')->whereIn('id', $following_id)->get();
+      return view('list', compact('posts'));
+      dd($follow);
+    }
 }
 
 

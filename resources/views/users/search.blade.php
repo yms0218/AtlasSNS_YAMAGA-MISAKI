@@ -2,8 +2,29 @@
 
 @section('content')
 
-
-
+@if(isset($users))
+<table>
+  @foreach($users as $users)
+<tr>
+  <td><img src="{{asset('images/'.$users->images)}}" alt="ユーザーアイコン"></td>
+  <td>{{$users->username}}</td>
+  <td>
+    @if (auth()->user()->following($users->id))
+    <form action="{{route('unfollow',$users->id)}}" method="post">
+      @csrf
+      <button type="button" class="btn-danger">フォロー解除</button>
+    </form>
+    @else
+    <form action="{{route('follow',$users->id)}}" method="post">
+      @csrf
+      <button type="button" class="btn btn-primary">フォローする</button>
+    </form>
+    @endif
+  </td>
+</tr>
+  @endforeach
+</table>
+@endif
 <div class="container">
   {!! Form::open(['url' => 'users.search']) !!}
     @csrf
@@ -20,11 +41,12 @@
       <figure><img src="images/icon2.png" alt="Bさん"></figure>
       <div class="post-content">
         <div>
-          <div class="post-name">{{ $user->username }}</div> <!-- $単数->カラム名 -->
+          <div class="post-name"></div> <!-- $単数->カラム名 -->
         </div>
       </div>
     </li>
     @endforeach
+
   </ul>
 </div>
 @endsection
