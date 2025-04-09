@@ -6,16 +6,16 @@
 <table>
   @foreach($users as $user)
 <tr>
-  <td><img src="{{asset('images/'.$users->images)}}" alt="ユーザーアイコン"></td>
-  <td>{{$users->username}}</td>
+  <td><img src="{{asset('images/'.$user->images)}}" alt="ユーザーアイコン"></td>
+  <td>{{$user->username}}</td>
   <td>
-    @if (auth()->user()->following($users->id))
-    <form action="{{route('unfollow',$users->id)}}" method="post">
+    @if (auth()->user()->following($user->id))
+    <form action="{{route('unfollow',$user->id)}}" method="post">
       @csrf
       <button type="button" class="btn-danger">フォロー解除</button>
     </form>
     @else
-    <form action="{{route('follow',$users->id)}}" method="post">
+    <form action="{{route('follow',$user->id)}}" method="post">
       @csrf
       <button type="button" class="btn btn-primary">フォローする</button>
     </form>
