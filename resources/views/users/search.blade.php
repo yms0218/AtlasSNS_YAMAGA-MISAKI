@@ -4,7 +4,7 @@
 
 @if(isset($users))
 <table>
-  @foreach($users as $users)
+  @foreach($users as $user)
 <tr>
   <td><img src="{{asset('images/'.$users->images)}}" alt="ユーザーアイコン"></td>
   <td>{{$users->username}}</td>
@@ -41,7 +41,7 @@
       <figure><img src="images/icon2.png" alt="Bさん"></figure>
       <div class="post-content">
         <div>
-          <div class="post-name"></div> <!-- $単数->カラム名 -->
+          <div class="post-name">{{ $user->username }}</div> <!-- $単数->カラム名 -->
         </div>
       </div>
     </li>
