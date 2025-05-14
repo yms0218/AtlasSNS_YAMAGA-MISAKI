@@ -53,8 +53,8 @@ Route::post('/users.profile','UsersController@updateProfile');
 Route::get('/username','UsersController@username');
 Route::post('/username','UsersController@username');
 
-Route::post('users/{user}/follow', 'UserController@follow')->name('follow');
-Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+Route::post('users/{user}/follow', 'FollowsController@follow')->name('follow');
+Route::delete('users/{user}/unfollow', 'FollowsController@unfollow')->name('unfollow');
 
 
 });

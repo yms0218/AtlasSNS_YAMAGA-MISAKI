@@ -75,6 +75,7 @@ class PostsController extends Controller
     }
     //フォローしているユーザーのみの情報を取得する
     public function show(){
+      $posts = Post::get();
       //フォローしているユーザーのidを取得
       $following_id = Auth::user()->follow()->pluck('followed_id');
       //フォローしているユーザーのidを元に投稿機能を取得

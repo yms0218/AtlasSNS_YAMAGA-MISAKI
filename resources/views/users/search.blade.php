@@ -1,30 +1,6 @@
 @extends('layouts.login')
 
 @section('content')
-
-@if(isset($users))
-<table>
-  @foreach($users as $user)
-<tr>
-  <td><img src="{{asset('images/'.$user->images)}}" alt="ユーザーアイコン"></td>
-  <td>{{$user->username}}</td>
-  <td>
-    @if (auth()->user()->following($user->id))
-    <form action="{{route('unfollow',$user->id)}}" method="post">
-      @csrf
-      <button type="button" class="btn-danger">フォロー解除</button>
-    </form>
-    @else
-    <form action="{{route('follow',$user->id)}}" method="post">
-      @csrf
-      <button type="button" class="btn btn-primary">フォローする</button>
-    </form>
-    @endif
-  </td>
-</tr>
-  @endforeach
-</table>
-@endif
 <div class="container">
   {!! Form::open(['url' => 'users.search']) !!}
     @csrf
@@ -49,4 +25,28 @@
 
   </ul>
 </div>
+@if(isset($users))
+<table>
+  @foreach($users as $user)
+<tr>
+  <td><img src="{{asset('images/'.$user->images)}}" alt="ユーザーアイコン"></td>
+  <td>{{$user->username}}</td>
+  <td>
+    @if (auth()->user()->isFollowing($user->id))
+    <form action="{{route('unfollow',$user->id)}}" method="post">
+      @csrf
+      <button type="button" class="btn-danger">フォロー解除</button>
+    </form>
+    @else
+    <form action="{{route('follow',$user->id)}}" method="post">
+      @csrf
+      <button type="submit" class="btn btn-primary">フォローする</button>
+    </form>
+    @endif
+  </td>
+</tr>
+  @endforeach
+</table>
+@endif
+
 @endsection
