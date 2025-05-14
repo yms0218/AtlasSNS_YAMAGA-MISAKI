@@ -53,10 +53,8 @@ Route::post('/users.profile','UsersController@updateProfile');
 Route::get('/username','UsersController@username');
 Route::post('/username','UsersController@username');
 
-Route::post('users/{user}/follow', 'FollowsController@follow')->name('follow');
-Route::delete('users/{user}/unfollow', 'FollowsController@unfollow')->name('unfollow');
-
-
+Route::post('/users/{id}/follow', 'FollowsController@follow')->name('follow');
+Route::delete('/users/{id}/unfollow', 'FollowsController@unfollow')->name('unfollow');
 });
 
 //ログアウト中のページ

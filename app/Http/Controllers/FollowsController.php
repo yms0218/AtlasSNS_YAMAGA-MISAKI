@@ -34,11 +34,11 @@ class FollowsController extends Controller
     $user = Auth::user();
     //$follower = auth()->user();
     // フォローしているか
-    $is_following = $user->isFollowing($user->id);
-    if(!$is_following) {
+    //$is_following = $user->isFollowing($user->id);
+    if(!$user->isFollowing($user->id)) {
     // フォローしていなければフォローする
     $user->follows($user->id);
-    return back();
+    return redirect('/search');
     }
    }
     //フォロー解除
@@ -48,10 +48,10 @@ class FollowsController extends Controller
     //$follower = auth()->user();
     // フォローしているか
     $is_following = $user->isFollowing($user->id);
-    if($is_following) {
+    if($user->isFollowing($user->id)) {
     // フォローしていればフォローを解除する
     $follower->unfollow($user->id);
-    return back();
+    return redirect('/search');
   }
  }
 }
