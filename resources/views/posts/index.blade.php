@@ -20,7 +20,7 @@
   <ul>
   @foreach($list as $list)
     <li class="post-block">
-      <figure><img src="images/{{ $list->user->images }}" alt="Aさん"></figure>
+      <figure><img src="images/{{ $list->user->images }}" alt=""></figure>
       <div class="post-content">
         <div>
           <div class="post-name">{{ $list->user->username }}</div>

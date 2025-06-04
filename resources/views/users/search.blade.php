@@ -12,16 +12,7 @@
   {!! Form::close() !!}
   <p class="word">検索ワード：{{ $search }}</p>
   <ul>
-    @foreach($users as $user) <!-- //['$複数形'as $単数] -->
-    <li class="post-block">
-      <figure><img src="images/icon2.png" alt="Bさん"></figure>
-      <div class="post-content">
-        <div>
-          <div class="post-name">{{ $user->username }}</div> <!-- $単数->カラム名 -->
-        </div>
-      </div>
-    </li>
-    @endforeach
+
 
   </ul>
 </div>
