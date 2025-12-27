@@ -8,6 +8,11 @@
     </figure>
 </div>
 
+@foreach($users as $user)
+    <a href="{{ route('users.show', $user->id) }}">
+<img src="{{ asset('storage/user-images/'. Auth::user()->images) }}" class="icon-image">
+</a>
+
 @if($errors->any())
     <div class="alert alert-danger">
       <ul>

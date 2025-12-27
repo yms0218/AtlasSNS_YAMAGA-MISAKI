@@ -18,7 +18,7 @@
 </div>
 <div>
   <ul>
-  @foreach($list as $list)
+  @foreach($posts as $list)
     <li class="post-block">
       <figure><img src="images/{{ $list->user->images }}" alt=""></figure>
       <div class="post-content">
@@ -29,17 +29,20 @@
         <div>{{ $list->post }}</div>
 
         <td>
+          @if(Auth::id() == $list->user_id)
           <div class="contents">
             <a class="js-modal-open" href="" post="{{ $list->post }}"
             post_id="{{ $list->id }}"><img src="./images/edit.png" alt="編集"></a>
           </div>
+          @endif
         </td>
-
+        @if(Auth::id() == $list->user_id)
         {!! Form::open(['url' => '/post/delete']) !!}
         {{ Form::token() }}
         {!! Form::input('hidden', 'id', $list->id) !!}
         <button type="submit"><img class="delete" src="images/trash.png" width="55" height="55" onclick="return confirm('こちらの投稿を削除します。よろしいでしょうか？')"></button>
         {!! Form::close() !!}
+        @endif
       </div>
     </li>
     @endforeach

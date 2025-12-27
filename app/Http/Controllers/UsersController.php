@@ -4,13 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Post;
 use Auth;
 class UsersController extends Controller
 {
     //
     public function profile(){
+        // $user = auth()->user();
+        //リンク元のidを元にユーザー情報を取得する
+        // $users = User::where('id', $user_Id)->first();
+        // dd($users);
+        //リンク元ユーザーのidを元に投稿内容を取得する
+        // $posts = Post::with('user')->where('user_id', $user_Id)-> latest('updated_at')-> get();
+        //dd($posts);
+        // return view('users.profile', compact('users', 'posts'));
         return view('users.profile');
     }
+
+    public function show($id)
+{
+    // 特定のユーザーをデータベースから取得
+    $user = User::where('id', $id)->first();
+    //dd($user);
+    $posts = Post::where('user_id', $id)->get();
+    // ユーザー情報をビューに渡す
+    return view('users.profile_show', compact('user', 'posts'));
+
+}
     public function search(){
         $users = User::get();
         $users = User::all()->except([\Auth::id()]); //User::all()で全ユーザーを取得して、そこからexceptメソッドで認証済みユーザー（自分）のIDを持つアカウント情報を除外
@@ -87,7 +107,7 @@ class UsersController extends Controller
         ]);
         // if文で「画像ファイルがあるとき」
         if($request->hasFile('images')) {
-        ($images = $request->images->store('public'));// 画像をstorage/app/public/image配下に保存
+        ($images = $request->file('images')->store('public/images'));// 画像をstorage/app/public/image配下に保存
         $user->images = $images;
         $user->save();
         }

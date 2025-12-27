@@ -6,11 +6,27 @@ body{
 }
 /* header */
 header{
-    padding: 10px;
-    background:#186AC9;
+  height: 90px;
+  background: #1565c0;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 0px;
 }
 
+.atlas{
+  padding-left: 20px;
+  padding-top: 15px;
+}
 
+.accordion .p {
+  padding-top: 50px;
+  align-items: right;
+  gap: 12px;
+}
 
 /*p {
     color: #f7ecf1;

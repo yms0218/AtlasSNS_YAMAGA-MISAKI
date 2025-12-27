@@ -49,6 +49,9 @@ Route::get('/followerList','FollowsController@followerList');
 // プロフィールを更新させる
 Route::post('/users.profile','UsersController@updateProfile');
 
+Route::get('users/{id}/profile' , 'UsersController@profile')->name('profile.index');
+Route::get('users/{id}/profile', 'UsersController@show')->name('show');
+
 //検索フォーム用
 Route::get('/username','UsersController@username');
 Route::post('/username','UsersController@username');

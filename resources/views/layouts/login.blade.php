@@ -18,20 +18,20 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
-    
+
 </head>
 <body>
     <header>
         <h1><a href="/top">
             <figure class="atlas">
-            <img src="images/atlas.png" alt="Atlas">
+            <img src="images/atlas.png" alt="Atlas" width="120" height="45" >
             </figure>
         </a></h1>
 
         <div class="side_user">
         <!-- アコーディオンメニュー -->
         <div id="accordion" class="accordion-container">
-        <p>{{ Auth::user()->username }}さん<img src="{{ asset('public/storage/' .Auth::user()->images) }}"></p>
+        <p>{{ Auth::user()->username }}さん<img src="{{ asset('/storage/images/' .Auth::user()->images) }}"></p>
 
         <div class="accordion-title js-accordion-title">
 

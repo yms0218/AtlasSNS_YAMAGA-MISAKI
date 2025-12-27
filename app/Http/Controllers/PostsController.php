@@ -11,11 +11,22 @@ class PostsController extends Controller
 {
 
     public function index(){
+      $user = Auth::user()->id;
+      //$posts = Post::get();
+      //フォローしているユーザーのidを取得
+      $following_id = Auth::user()->follow()->pluck('followed_id')->toArray();
+      $following_id[] = $user;
+      //フォローしているユーザーのidを元に投稿機能を取得
+      $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
 
+      //$posts = Post::query()->whereIn('id', Auth::user()->follow->pluck('followed_id'));//->orWhere('id', Auth::user()->id)->latest()->get();
+
+
+      return view('posts.index', compact('posts'));
         //投稿の一覧表示
-        $list = Post::get(); //投稿データを取得して変数＄listに格納
+        //$list = Post::get(); //投稿データを取得して変数＄listに格納
         //dd($list);
-        return view('posts.index', ['list'=>$list]);//投稿データをビューに渡す　　//オレンジ色：bladeの渡した先の変数、水色：何を入れたいか、渡したいか
+        //return view('posts.index', ['list'=>$list]);//投稿データをビューに渡す　　//オレンジ色：bladeの渡した先の変数、水色：何を入れたいか、渡したいか
 
     }
     //投稿機能
@@ -75,12 +86,18 @@ class PostsController extends Controller
     }
     //フォローしているユーザーのみの情報を取得する
     public function show(){
-      $posts = Post::get();
+      $user = Auth::user()->id;
+      //$posts = Post::get();
       //フォローしているユーザーのidを取得
-      $following_id = Auth::user()->follow()->pluck('followed_id');
+      $following_id = Auth::user()->follow->pluck('followed_id')->toArray();
+      $following_id[] = $user;
       //フォローしているユーザーのidを元に投稿機能を取得
-      $posts = Post::with('user')->whereIn('id', $following_id)->get();
-      return view('list', compact('posts'));
+      $posts = Post::with('user')->whereIn('user_id', $following_id)->get();
+
+      //$posts = Post::query()->whereIn('id', Auth::user()->follow->pluck('followed_id'));//->orWhere('id', Auth::user()->id)->latest()->get();
+
+
+      return view('posts.index', compact('posts'));
       dd($follow);
     }
 }

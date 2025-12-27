@@ -4,12 +4,11 @@
 
 @section('content')
 <div class="">
-    <h2>フォローリスト</h2>
-    @foreach ($follows as $follow)
+    @foreach ($posts as $follow)
     <ul>
         <li>
-            <div class="follow_icon"><img src="{{ asset('storage/images'.$follow->user->images) }}" alt="foro-aikonn 
-            "></div>
+            <div class="follow_icon">
+                <a href="{{ route('show', $follow->id) }}"><img src="{{ asset('storage/images/'.$follow->user->images) }}" alt="フォローアイコン"></a></div>
         </li>
     </ul>
     @endforeach
@@ -18,11 +17,17 @@
 <div class="">
     <h1>フォロワーリスト</h1>
     <div class="follow_icon">
-         foreach ($follows as $follow)
-        <a><img src="{{-- asset('storage/' .$following->images) --}}" alt="フォローアイコン"></a>
-        endforeach
+         @foreach ($posts as $follow)
+        <a href="{{ route('show', $follow->id) }}" ><img src="{{ asset('storage/images/' .$follow->User->images) }}" alt="フォローアイコン"></a>
+        @endforeach
     </div>
 </div>
+
+@foreach($posts as $post)
+<p>名前：{{ $post->user->username }}</p>
+<p>投稿内容：{{ $post->post }}</p>
+
+@endforeach
 
 
 @endsection
