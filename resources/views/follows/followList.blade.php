@@ -3,8 +3,8 @@
 @section('content')
 
 <!-- フォローしている人のアイコン一覧 -->
-<div class="">
-    <h1>フォローリスト</h1>
+<div class="follow-list-header">
+<h1 class="follow-title">フォローリスト</h1>
     <ul>
     @foreach ($following_id as $post)
         <li>
@@ -17,8 +17,25 @@
 </div>
 
 @foreach($posts as $post)
-<p>名前：{{ $post->user->username }}</p>
-<p>投稿内容：{{ $post->post }}</p>
-@endforeach
+<li class="post-block">
+  <figure>
+     <img src="{{ asset('storage/'.$post->user->images) }}">
+  </figure>
 
+ <div class="post-content">
+
+   <div class="post-header">
+
+     <div class="post-name">
+     {{ $post->user->username }}
+     </div>
+
+        <div class="post-date">
+         {{ $post->created_at }}
+        </div>
+   </div>
+     <div class="post-text">{{ $post->post }}</div>
+   </div>
+@endforeach
+</li>
 @endsection

@@ -32,7 +32,7 @@
           @if(Auth::id() == $list->user_id)
           <div class="contents">
             <a class="js-modal-open" href="" post="{{ $list->post }}"
-            post_id="{{ $list->id }}"><img src="./images/edit.png" alt="編集"></a>
+            post_id="{{ $list->id }}"><img src="./images/edit.png" width="55" height="55" alt="編集"></a>
           </div>
           @endif
         </td>
@@ -40,7 +40,7 @@
         {!! Form::open(['url' => '/post/delete']) !!}
         {{ Form::token() }}
         {!! Form::input('hidden', 'id', $list->id) !!}
-        <button type="submit"><img class="delete" src="images/trash.png" width="55" height="55" onclick="return confirm('こちらの投稿を削除します。よろしいでしょうか？')"></button>
+        <button type="submit" class="delete-btn"><img class="trash-icon" src="images/trash.png" alt="削除" width="55" height="55" onclick="return confirm('こちらの投稿を削除します。よろしいでしょうか？')"></button>
         {!! Form::close() !!}
         @endif
       </div>

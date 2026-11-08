@@ -10,6 +10,7 @@ class UsersController extends Controller
 {
     //
     public function profile(){
+        $users = User::all();
         // $user = auth()->user();
         //リンク元のidを元にユーザー情報を取得する
         // $users = User::where('id', $user_Id)->first();

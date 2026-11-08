@@ -2,25 +2,45 @@
 
 @section('content')
 <div class="container">
-<a><img src="{{ asset('storage/' .$user->images) }}" alt="フォローアイコン"></a>
-<p>ユーザー名 {{ $user->username }}</p>
-<p>自己紹介 {{ $user->bio }}</p>
+<div class="user-profile">
 
-{{-- $post->user->username --}}
+  <div class="profile-left">
+<a><img src="{{ asset('storage/' .$user->images) }}" alt="フォローアイコン"></a>
 </div>
 
+<div class="profile-center">
+<div class="profile-row">
+<span class="profile-label">ユーザー名</span>
+
+<span class="profile-value">
+    {{ $user->username }}
+  </span>
+</div>
+
+<div class="profile-row">
+<span class="profile-label">自己紹介 {{ $user->bio }}</span>
+</div>
+
+{{-- $post->user->username --}}
+
+<div class="profile-right">
 @if (auth()->user()->isFollowing($user->id))
     <form action="{{route('unfollow',$user->id)}}" method="post">
       @csrf
-      <button type="submit" class="btn-danger">フォロー解除</button>
+      <button type="submit" class="unfollow-btn">フォロー解除</button>
     </form>
     @else
     <form action="{{ route('follow', $user->id) }}" method="post">
 @csrf
-<button type="submit" class="btn btn-primary">フォローする</button>
+<button type="submit" class="follow-btn">フォローする</button>
 
 </form>
-    @endif
+@endif
+</div>
+</div>
+</div>
+</div>
+
 <ul>
     @foreach($posts as $post)
     <li class="post-block">

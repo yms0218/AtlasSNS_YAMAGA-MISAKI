@@ -7,6 +7,7 @@
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -28,24 +29,30 @@
             </figure>
         </a></h1>
 
-        <div class="side_user">
+        <p class="user_name">{{ Auth::user()->username }}さん</p>
         <!-- アコーディオンメニュー -->
         <div id="accordion" class="accordion-container">
-        <p>{{ Auth::user()->username }}さん<img src="{{ asset('/storage/images/' .Auth::user()->images) }}"></p>
 
         <div class="accordion-title js-accordion-title">
 
-                <p class="menu-btn"></p>
+        <button
+                type="button"
+                class="menu-btn"
+                aria-expanded="false"
+                aria-label="メニューを開く">
+        </button>
+
                 <ul class="menu">
                     <li><a href="/top">HOME</a></li>
                     <li><a href="/users.profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
+
         </div>
-        <figure class="icon">
-        <img src="">
-        </figure>
         </div>
+
+        <div class="icon">
+        <img src="{{ asset('/storage/images/' .Auth::user()->images) }}">
         </div>
     </header>
 
@@ -58,18 +65,26 @@
                 <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>{{ Auth::user()->follow->count() }}名</p>
+                <p>{{ Auth::user()->follow->count() }}人</p>
                 </div>
-                <p class="btn"><a href="/followList">フォローリスト</a></p>
+                <div class="button-container">
+                <button type="button" class="btn-follow-list"><a href="/followList">フォローリスト</a></button>
+                </div>
                 <div>
                 <p>フォロワー数</p>
-                <p>{{ Auth::user()->follower->count() }}名</p>
+                <p>{{ Auth::user()->follower->count() }}人</p>
                 </div>
-                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
+                <div class="button-container">
+                <button type="button" class="btn-follower-list"><a href="/followerList">フォロワーリスト</a></button>
             </div>
-            <p class="btn"><a href="/users.search">ユーザー検索</a></p>
+            </div>
+
+            <div class="search_button">
+            <button type="button" class="btn-search"><a href="/users.search">ユーザー検索</a></button>
+            </div>
         </div>
     </div>
+
     <footer>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

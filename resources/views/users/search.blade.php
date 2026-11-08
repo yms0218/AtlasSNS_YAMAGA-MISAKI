@@ -17,7 +17,7 @@
   </ul>
 </div>
 @if(isset($users))
-<table>
+<table class="user-list">
   @foreach($users as $user)
 <tr>
   <td><img src="{{asset('images/'.$user->images)}}" alt="ユーザーアイコン"></td>
@@ -26,12 +26,12 @@
     @if (auth()->user()->isFollowing($user->id))
     <form action="{{route('unfollow',$user->id)}}" method="post">
       @csrf
-      <button type="submit" class="btn-danger">フォロー解除</button>
+      <button type="submit" class="unfollow-btn">フォロー解除</button>
     </form>
     @else
     <form action="{{ route('follow', $user->id) }}" method="post">
 @csrf
-<button type="submit" class="btn btn-primary">フォローする</button>
+<button type="submit" class="follow-btn">フォローする</button>
 
 </form>
     @endif
