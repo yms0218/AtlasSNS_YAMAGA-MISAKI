@@ -7,9 +7,14 @@
     {!! Form::open(['url' => '/top']) !!}
     {{ Form::token() }}
     <div class="form-group">
+
     <figure class="icon">
-        <img src="images/icon1.png">
-        </figure>
+@if(Auth::user()->images)
+    <img src="{{ asset('storage/'.Auth::user()->images) }}">
+@else
+    <img src="{{ asset('images/icon1.png') }}">
+@endif
+</figure>
         {{ Form::input('text','newPost',null,['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください'])}}
     </div>
     <button type="submit"><img class="send" src="images/post.png" width="55" height="55"></button>
@@ -20,7 +25,13 @@
   <ul>
   @foreach($posts as $list)
     <li class="post-block">
-      <figure><img src="images/{{ $list->user->images }}" alt=""></figure>
+    <figure>
+  @if($list->user->images)
+    <img src="{{ asset('storage/'.$list->user->images) }}" alt="">
+  @else
+    <img src="{{ asset('images/icon1.png') }}" alt="">
+  @endif
+</figure>
       <div class="post-content">
         <div>
           <div class="post-name">{{ $list->user->username }}</div>

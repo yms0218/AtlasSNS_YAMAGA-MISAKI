@@ -76,15 +76,15 @@ class UsersController extends Controller
                     'bio' => 'required|max:150'
                 ]);
                 $this->validate($request, [
-                    'file' => [
+                    'images' => [
                         // 必須
                         //'required',
                         // アップロードされたファイルであること
                         'file',
                         // 画像ファイルであること
-                        'images',
+                        'image',
                         // MIMEタイプを指定
-                        'mimes:jpeg,png',
+                        'mimes:jpeg,png,jpg',
                         // 最小縦横120px 最大縦横400px
                         //'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
                     ]]);
@@ -108,7 +108,7 @@ class UsersController extends Controller
         ]);
         // if文で「画像ファイルがあるとき」
         if($request->hasFile('images')) {
-        ($images = $request->file('images')->store('public/images'));// 画像をstorage/app/public/image配下に保存
+        $images = $request->file('images')->store('images', 'public');// 画像をstorage/app/public/image配下に保存
         $user->images = $images;
         $user->save();
         }
